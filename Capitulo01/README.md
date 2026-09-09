@@ -1,4 +1,4 @@
-# Exploración de Agentes de IA Preconstruidos en Microsoft 365 Copilot y Comparación de Comportamientos
+# Comparación de Modelos de IA en Poe y Análisis de Comportamientos
 
 ## 1. Metadatos
 
@@ -8,13 +8,17 @@
 | **Complejidad** | Fácil |
 | **Nivel Bloom** | Aplicar |
 | **Módulo** | 1 – Fundamentos de Agentes de IA |
-| **Lección asociada** | 1.1 – Diferencia entre Chatbot, Asistente y Agente Inteligente |
+| **Lección asociada** | 1.1 – Diferencia entre Chatbot, Asistente y Agente Inteligente / 1.3 – Contexto, Memoria, Herramientas, Razonamiento y Autonomía |
 
 ---
 
 ## 2. Descripción General
 
-En este laboratorio explorarás cuatro agentes de IA preconstruidos —Copilot en Word, Copilot en Teams, Copilot en Outlook y ChatGPT GPT-4o— ejecutando un conjunto estandarizado de cinco tareas de prueba en cada uno. Observarás y documentarás las diferencias de comportamiento en cuanto a contexto, memoria, herramientas, razonamiento y autonomía. Los hallazgos se registrarán en una tabla comparativa dentro de tu workspace Notion, generando un artefacto de referencia que utilizarás en los laboratorios del Módulo 2.
+En este laboratorio explorarás cuatro modelos/bots de IA disponibles en la plataforma **Poe** —un modelo tipo GPT, un modelo Claude, un modelo Gemini y un bot con acceso a búsqueda web— ejecutando un conjunto estandarizado de cinco tareas de prueba en cada uno. Observarás y documentarás las diferencias de comportamiento en cuanto a contexto, memoria, herramientas, razonamiento y autonomía. Los hallazgos se registrarán en la plantilla de bitácora **`Bitacora-Lab-01-Poe.xlsx`**, generando un artefacto de referencia que utilizarás en los laboratorios del Módulo 2.
+
+Poe no requiere licenciamiento adicional por participante: basta una cuenta gratuita para acceder a múltiples modelos de IA desde una sola interfaz.
+
+> ⚠️ **Presupuesto de créditos:** este laboratorio usa la capa gratuita de Poe (300 puntos de cómputo por participante). Por eso las 4 tareas se ejecutan con las **variantes económicas** de cada modelo (Nano/Mini, Haiku, Flash) en lugar de las versiones insignia (Opus, Pro, Astra), que consumen muchos más puntos por mensaje. El Paso 1 incluye una verificación rápida del costo en puntos antes de empezar.
 
 ---
 
@@ -22,9 +26,9 @@ En este laboratorio explorarás cuatro agentes de IA preconstruidos —Copilot e
 
 Al completar este laboratorio serás capaz de:
 
-- [ ] Identificar y diferenciar el comportamiento funcional de al menos tres agentes de IA preconstruidos (Copilot en Word, Copilot en Teams, Copilot en Outlook y ChatGPT GPT-4o).
-- [ ] Clasificar cada agente explorado según la taxonomía de tipos de agentes (reactivo, asistente, autónomo) con base en evidencia observada.
-- [ ] Documentar en la bitácora Notion las diferencias clave de comportamiento utilizando los cinco atributos: contexto, memoria, herramientas, razonamiento y autonomía.
+- [ ] Identificar y diferenciar el comportamiento funcional de al menos tres modelos de IA distintos disponibles en Poe.
+- [ ] Clasificar cada modelo/bot explorado según la taxonomía de tipos de agentes (reactivo, asistente, autónomo) con base en evidencia observada.
+- [ ] Documentar en la bitácora las diferencias clave de comportamiento utilizando los cinco atributos: contexto, memoria, herramientas, razonamiento y autonomía.
 - [ ] Relacionar los casos de uso observados con escenarios empresariales reales relevantes para tu contexto profesional.
 
 ---
@@ -36,18 +40,15 @@ Al completar este laboratorio serás capaz de:
 | Concepto | Descripción |
 |----------|-------------|
 | Diferencia Chatbot / Asistente / Agente | Lectura completada de la Lección 1.1 (temas 1.1 a 1.5 del Módulo 1) |
-| Navegación básica en Microsoft 365 | Saber abrir Word, Teams y Outlook desde el portal office.com o aplicaciones de escritorio |
-| Uso básico de Notion | Saber duplicar páginas y editar tablas en Notion |
+| Navegación básica en plataformas web | Saber crear una cuenta y navegar en un sitio web |
 
 ### Accesos requeridos
 
 | Recurso | Detalle |
 |---------|---------|
-| Cuenta Microsoft 365 | `usuario[N]@labagentes[N].onmicrosoft.com` con licencia E3 + Copilot activa |
-| Microsoft Teams Desktop | Versión 24046.2813.2866.2461, sesión iniciada con cuenta del tenant |
-| ChatGPT GPT-4o | Cuenta Plus o compartida provista por el instructor |
-| Notion | Workspace `IA-Agentes-Lab-Workspace` duplicado en cuenta personal |
+| Cuenta Poe | Cuenta gratuita en [poe.com](https://poe.com), registrada con correo electrónico o cuenta de Google |
 | Navegador | Google Chrome 124+ o Microsoft Edge 124+ |
+| Plantilla de bitácora | Archivo [**Bitácora Lab 01 - Poe.xlsx**](./Bitacora-Lab-01-Poe.xlsx) proporcionado por el instructor |
 
 ---
 
@@ -58,286 +59,229 @@ Al completar este laboratorio serás capaz de:
 | Componente | Requisito |
 |------------|-----------|
 | Procesador | 64 bits – Intel Core i5 8ª gen. o AMD Ryzen 5 3000+ |
-| RAM | 8 GB mínimo (16 GB recomendado) |
-| Almacenamiento libre | 2 GB |
+| RAM | 8 GB mínimo |
 | Conexión a internet | 10 Mbps mínimo estable |
 
 ### Software requerido
 
 | Aplicación | Versión | Propósito |
 |------------|---------|-----------|
-| Microsoft Word (M365) | Canal actual 2404 | Explorar Copilot en Word |
-| Microsoft Teams Desktop | 24046.2813.2866.2461 | Explorar Copilot en Teams |
-| Microsoft Outlook (M365) | Canal actual 2404 | Explorar Copilot en Outlook |
-| ChatGPT Web | GPT-4o (mayo 2024) | Agente de referencia externo |
-| Notion Web App | 2.2.0 | Documentación de hallazgos |
-| Google Chrome / Edge | 124.x | Acceso a servicios web |
+| Poe (Web App) | Versión actual | Acceso a múltiples modelos de IA desde una sola interfaz |
+| Google Chrome / Edge | 124.x | Acceso al servicio web |
+| Microsoft Excel / Google Sheets | Cualquier versión reciente | Abrir y completar la plantilla [**Bitácora Lab 01 - Poe.xlsx**](./Bitacora-Lab-01-Poe.xlsx) |
 
 ### Preparación inicial del entorno
 
-1. Verifica que puedes acceder al portal Microsoft 365 en [https://www.office.com](https://www.office.com) con tus credenciales del tenant de práctica.
-2. Abre Microsoft Teams Desktop y confirma que el ícono de Copilot aparece en la barra lateral izquierda.
-3. Abre Notion en el navegador y navega a tu copia personal del workspace `IA-Agentes-Lab-Workspace`. Localiza la página **Bitácora-Lab-01**.
+1. Verifica que puedes acceder a [https://poe.com](https://poe.com) e iniciar sesión con tu cuenta.
+
+![Imagen 001](../images/imagen001.png)
+2. En el buscador de bots de Poe, localiza y guarda como favoritos (ícono de estrella) los siguientes cuatro bots:
+
+
+   - Un modelo **GPT económico** (por ejemplo, `GPT-5.4-Nano` o la variante "Nano"/"Mini" más reciente de OpenAI disponible en Poe).
+
+   - Un modelo **Claude económico** (por ejemplo, `Claude-Haiku-4.5` o la variante "Haiku" más reciente de Anthropic disponible en Poe).
+
+   - Un modelo **Gemini económico** (por ejemplo, `Gemini-2.5-Flash-Lite` o la variante "Flash" más reciente de Google disponible en Poe — evita las variantes "Pro").
+
+   - Un bot con **búsqueda web habilitada de bajo costo** (por ejemplo, `Assistant`, el bot general de Poe que enruta a modelos económicos y puede buscar información en tiempo real; evita bots de búsqueda "premium" que cobran más puntos por mensaje).
+
+   > ⚠️ **Cuidado al elegir el modelo:** antes de guardar cada bot como favorito, toca el ícono de puntos (⚡) junto a su nombre y revisa la tabla **"Tarifas"** que se despliega. Ahí verás el costo en puntos por cada 1,000 tokens de Entrada y de Salida (texto) — elige siempre la variante con el costo más bajo en ambas columnas (Nano, Mini, Haiku y Flash suelen ser las más económicas de cada proveedor). Si el bot muestra también una tarifa de "Salida (búsqueda)", ten en cuenta que ese tipo de respuesta cuesta muchos más puntos por uso, así que solo debe activarse cuando la tarea realmente lo requiera (Tareas T2 y T4).
+
+![Imagen 004](../images/imagen004.png)
+3. Abre el archivo `Bitacora-Lab-01-Poe.xlsx` y guarda una copia personal para este laboratorio.
 
 ---
 
 ## 6. Instrucciones Paso a Paso
 
-### Paso 1: Preparar la bitácora de documentación en Notion
+### Paso 1: Preparar la bitácora de documentación
 
-**Objetivo:** Configurar la página de registro donde documentarás todas las observaciones del laboratorio.
+**Objetivo:** Configurar tu copia de la plantilla `Bitacora-Lab-01-Poe.xlsx` donde registrarás todas las observaciones del laboratorio.
 
 **Instrucciones:**
 
-1. Abre tu navegador y accede a [https://www.notion.so](https://www.notion.so).
-2. Navega al workspace duplicado `IA-Agentes-Lab-Workspace`.
-3. Abre la página **Bitácora-Lab-01**.
-4. Verifica que la página contiene las siguientes secciones pre-creadas:
-   - **Tabla de Tareas de Prueba** (5 filas con las tareas estandarizadas)
-   - **Tabla Comparativa de Agentes** (4 columnas: Word, Teams, Outlook, ChatGPT)
-   - **Notas de Observación** (área de texto libre)
-5. En la sección superior de la página, completa los campos de encabezado:
+1. Abre tu copia personal de `Bitacora-Lab-01-Poe.xlsx`.
+2. Verifica que el archivo contiene las siguientes pestañas ya preparadas:
+   - **Encabezado** (datos del participante)
+   - **Tabla de Tareas** (5 filas con las tareas estandarizadas)
+   - **Tabla Comparativa** (4 columnas: GPT, Claude, Gemini, Bot con búsqueda web)
+   - **Notas** (escenarios empresariales y observaciones libres)
+3. En la pestaña **Encabezado**, completa las celdas amarillas:
    - **Nombre del participante:** [Tu nombre completo]
    - **Fecha:** [Fecha actual]
    - **Hora de inicio:** [Hora actual]
-6. Revisa las **cinco tareas de prueba estandarizadas** que ejecutarás en cada agente:
+4. En la pestaña **Tabla de Tareas**, revisa las **cinco tareas de prueba estandarizadas** que ya están cargadas y que ejecutarás en cada modelo, así como la nota sobre cómo elegir el modelo económico correcto de cada bot:
 
 | # | Tarea | Categoría |
 |---|-------|-----------|
 | T1 | "Redacta un correo profesional para solicitar una reunión con el equipo de ventas para discutir los resultados del Q1" | Generación de contenido |
-| T2 | "¿Cuáles fueron los temas principales de mi última reunión de equipo?" | Recuperación de información |
+| T2 | "¿Qué pasó en las noticias más relevantes de esta semana?" | Recuperación de información actual |
 | T3 | "Dado que nuestro presupuesto se redujo un 15% y tenemos 3 proyectos pendientes, ¿cuál debería priorizar?" | Razonamiento sobre contexto |
 | T4 | "Necesito ayuda con lo del proyecto" (solicitud deliberadamente ambigua) | Manejo de ambigüedad |
-| T5 | "Agenda una reunión para mañana a las 10am con María García del departamento de finanzas" | Ejecución con herramientas |
 
-**Resultado esperado:** La página Bitácora-Lab-01 está abierta, personalizada con tus datos y lista para recibir las observaciones de cada interacción.
 
-**Verificación:** Confirma que puedes editar la tabla comparativa agregando texto en al menos una celda. Si la página está en modo solo lectura, estás trabajando sobre el workspace original del instructor — regresa y utiliza tu copia personal.
+**Resultado esperado:** Tu copia de `Bitacora-Lab-01-Poe.xlsx` está abierta, personalizada con tus datos en la pestaña Encabezado y lista para recibir las observaciones de cada interacción.
+
+**Verificación:** Confirma que puedes editar una celda amarilla de la pestaña **Tabla Comparativa** sin problema.
 
 ---
 
-### Paso 2: Explorar Copilot en Microsoft Word
+### Paso 2: Explorar un modelo tipo GPT en Poe
 
-**Objetivo:** Ejecutar las cinco tareas de prueba en Copilot dentro de Word y registrar el comportamiento observado.
+**Objetivo:** Ejecutar las cinco tareas de prueba en un bot GPT económico de Poe y registrar el comportamiento observado.
 
 **Instrucciones:**
 
-1. Abre Microsoft Word desde el portal [office.com](https://www.office.com) o desde la aplicación de escritorio.
-2. Crea un nuevo documento en blanco.
-3. Activa Copilot haciendo clic en el ícono de **Copilot** en la cinta de opciones (pestaña *Inicio*). Se abrirá el panel lateral de Copilot.
-4. Ejecuta la **Tarea T1** — escribe en el panel de Copilot:
+1. En Poe, abre el bot GPT económico que guardaste como favorito (por ejemplo, `GPT-5.4-Nano`).
+2. Inicia una **conversación nueva** (ícono de "+" o "New chat").
+3. Ejecuta la **Tarea T1** — escribe:
    ```
    Redacta un correo profesional para solicitar una reunión con el equipo de ventas para discutir los resultados del Q1
    ```
-5. Observa y registra en Notion:
-   - ¿Generó contenido directamente en el documento o solo en el panel?
+
+![Imagen 007](../images/imagen007.png)
+
+4. Observa y registra en tu bitácora:
    - ¿Qué tan elaborada fue la respuesta?
    - ¿Ofreció opciones o variantes?
-6. Ejecuta la **Tarea T2** — escribe:
+5. Ejecuta la **Tarea T2** — escribe:
    ```
-   ¿Cuáles fueron los temas principales de mi última reunión de equipo?
+   ¿Qué pasó en las noticias más relevantes de esta semana?
    ```
-7. Observa: ¿Puede acceder a información fuera del documento actual? Registra la respuesta (probablemente indicará que no tiene acceso a esa información desde Word).
-8. Ejecuta la **Tarea T3** — escribe:
+6. Observa: ¿El modelo indica que no tiene acceso a información actualizada o en tiempo real? Registra la respuesta textual (probablemente mencionará su fecha límite de conocimiento).
+
+![Imagen 008](../images/imagen008.png)
+
+7. Ejecuta la **Tarea T3** — escribe:
    ```
    Dado que nuestro presupuesto se redujo un 15% y tenemos 3 proyectos pendientes, ¿cuál debería priorizar?
    ```
-9. Observa: ¿Pide más contexto? ¿Razona con la información limitada? ¿Genera un análisis estructurado?
-10. Ejecuta la **Tarea T4** — escribe:
-    ```
-    Necesito ayuda con lo del proyecto
-    ```
-11. Observa: ¿Cómo maneja la ambigüedad? ¿Pide clarificación o asume un contexto?
-12. Ejecuta la **Tarea T5** — escribe:
-    ```
-    Agenda una reunión para mañana a las 10am con María García del departamento de finanzas
-    ```
-13. Observa: ¿Puede ejecutar esta acción o indica que no tiene esa capacidad?
-14. En tu bitácora Notion, completa la columna **"Copilot en Word"** de la tabla comparativa con tus observaciones para cada tarea.
 
-**Resultado esperado:** Has identificado que Copilot en Word se especializa en generación y edición de contenido dentro del documento, tiene contexto limitado al documento actual, no accede a información de otras aplicaciones de M365 y no puede ejecutar acciones externas como agendar reuniones.
+![Imagen 009](../images/imagen009.png)
 
-**Verificación:** Tu columna "Copilot en Word" en Notion tiene al menos una observación por cada una de las 5 tareas. Toma una captura de pantalla del panel de Copilot mostrando al menos una respuesta y guárdala como evidencia.
+8. Observa: ¿Pide más contexto? ¿Razona con la información limitada? ¿Genera un análisis estructurado?
+
+9. Ejecuta la **Tarea T4** — escribe:
+   ```
+   Necesito ayuda con lo del proyecto
+   ```
+10. Observa: ¿Cómo maneja la ambigüedad? ¿Pide clarificación o asume un contexto?
+
+![Imagen 010](../images/imagen010.png)
+
+
+11. En la pestaña **Tabla Comparativa** de tu bitácora, completa la columna **"GPT"** con tus observaciones para cada atributo.
+
+**Resultado esperado:** Has identificado que el modelo GPT se especializa en generación de contenido y razonamiento con lenguaje natural, pero tiene contexto limitado a su fecha de entrenamiento y no accede a información en tiempo real ni ejecuta acciones externas.
+
+**Verificación:** Tu columna "GPT" en la pestaña Tabla Comparativa tiene al menos una observación por cada uno de los 5 atributos.
 
 ---
 
-### Paso 3: Explorar Copilot en Microsoft Teams
+### Paso 3: Explorar un modelo Claude en Poe
 
-**Objetivo:** Ejecutar las cinco tareas de prueba en Copilot dentro de Teams y registrar las diferencias de comportamiento respecto a Word.
+**Objetivo:** Ejecutar las cinco tareas de prueba en un bot Claude económico de Poe y registrar las diferencias de comportamiento respecto al modelo GPT.
 
 **Instrucciones:**
 
-1. Abre Microsoft Teams Desktop (versión 24046.2813.2866.2461).
-2. En la barra lateral izquierda, haz clic en el ícono de **Copilot** (ícono con forma de chispa/estrella).
-3. Se abrirá la ventana de chat con Copilot en Teams.
-4. Ejecuta la **Tarea T1** — escribe:
-   ```
-   Redacta un correo profesional para solicitar una reunión con el equipo de ventas para discutir los resultados del Q1
-   ```
-5. Observa y registra:
-   - ¿Genera el contenido de manera similar a Word?
-   - ¿Ofrece enviarlo directamente o solo genera texto?
-   - ¿Menciona contactos reales de tu organización?
-6. Ejecuta la **Tarea T2** — escribe:
-   ```
-   ¿Cuáles fueron los temas principales de mi última reunión de equipo?
-   ```
-7. Observa: ¿Accede a transcripciones de reuniones anteriores? ¿Muestra resúmenes de chats recientes? Este es un punto clave de diferenciación con Word.
-8. Ejecuta la **Tarea T3** — escribe:
-   ```
-   Dado que nuestro presupuesto se redujo un 15% y tenemos 3 proyectos pendientes, ¿cuál debería priorizar?
-   ```
-9. Observa: ¿Intenta buscar información en documentos compartidos o chats? ¿Su razonamiento es diferente al de Word?
-10. Ejecuta la **Tarea T4** — escribe:
-    ```
-    Necesito ayuda con lo del proyecto
-    ```
-11. Observa: ¿Hace referencia a proyectos mencionados en chats recientes? ¿Pide clarificación de manera diferente?
-12. Ejecuta la **Tarea T5** — escribe:
-    ```
-    Agenda una reunión para mañana a las 10am con María García del departamento de finanzas
-    ```
-13. Observa: ¿Puede acceder al calendario? ¿Ofrece crear la reunión o solo sugiere cómo hacerlo?
-14. En tu bitácora Notion, completa la columna **"Copilot en Teams"** de la tabla comparativa.
+1. En Poe, abre el bot Claude económico que guardaste como favorito (por ejemplo, `Claude-Haiku-4.5`).
+2. Inicia una **conversación nueva**.
+3. Repite las **Tareas T1 a T4** exactamente con el mismo texto usado en el Paso 2.
+![Imagen 012](../images/imagen012.png)
 
-**Resultado esperado:** Has identificado que Copilot en Teams tiene un contexto más amplio (acceso a chats, reuniones, archivos compartidos), puede recuperar información de conversaciones previas, y potencialmente interactuar con el calendario, mostrando mayor integración con herramientas organizacionales que Copilot en Word.
+4. Para cada tarea, observa y registra:
+   - Diferencias en el tono, extensión y estructura de la respuesta frente a GPT.
+   - Diferencias en cómo maneja la ambigüedad (T4) y el contexto limitado (T3).
+   - Si menciona explícitamente no tener acceso a datos en tiempo real (T2).
+5. En la pestaña **Tabla Comparativa** de tu bitácora, completa la columna **"Claude"**.
 
-**Verificación:** Compara mentalmente las respuestas de Teams vs. Word para la Tarea T2. Deberías notar una diferencia significativa en la capacidad de recuperar información contextual. Registra esta diferencia explícitamente en tus notas.
+**Resultado esperado:** Has identificado que, aunque el modelo Claude comparte limitaciones similares a GPT en cuanto a acceso a información en tiempo real, puede diferir en estilo de razonamiento, nivel de detalle o forma de solicitar clarificación.
+
+**Verificación:** Compara mentalmente las respuestas de Claude vs. GPT para la Tarea T4. Registra explícitamente al menos una diferencia observada en la pestaña Notas.
 
 ---
 
-### Paso 4: Explorar Copilot en Microsoft Outlook
+### Paso 4: Explorar un modelo Gemini en Poe
 
-**Objetivo:** Ejecutar las cinco tareas de prueba en Copilot dentro de Outlook y observar su especialización en gestión de correo electrónico.
+**Objetivo:** Ejecutar las cinco tareas de prueba en un bot Gemini económico de Poe y observar sus particularidades frente a los modelos anteriores.
 
 **Instrucciones:**
 
-1. Abre Microsoft Outlook desde el portal [outlook.office.com](https://outlook.office.com) o la aplicación de escritorio.
-2. Localiza el ícono de **Copilot** en la interfaz de Outlook. Puede aparecer:
-   - En la barra superior al redactar un nuevo correo ("Borrador con Copilot")
-   - En el panel lateral al leer un correo largo ("Resumir")
-   - En la barra de herramientas principal
-3. Inicia una nueva conversación con Copilot (haz clic en el ícono de Copilot en la barra principal de Outlook).
-4. Ejecuta la **Tarea T1** — escribe:
-   ```
-   Redacta un correo profesional para solicitar una reunión con el equipo de ventas para discutir los resultados del Q1
-   ```
-5. Observa y registra:
-   - ¿Genera el correo listo para enviar?
-   - ¿Sugiere destinatarios basándose en contactos existentes?
-   - ¿Ofrece insertar el borrador directamente en un nuevo mensaje?
-6. Ejecuta la **Tarea T2** — escribe:
-   ```
-   ¿Cuáles fueron los temas principales de mi última reunión de equipo?
-   ```
-7. Observa: ¿Busca en correos relacionados con reuniones? ¿Tiene acceso a información de Teams desde Outlook?
-8. Ejecuta la **Tarea T3** — escribe:
-   ```
-   Dado que nuestro presupuesto se redujo un 15% y tenemos 3 proyectos pendientes, ¿cuál debería priorizar?
-   ```
-9. Observa: ¿Intenta buscar correos relevantes sobre presupuesto o proyectos?
-10. Ejecuta la **Tarea T4** — escribe:
-    ```
-    Necesito ayuda con lo del proyecto
-    ```
-11. Observa: ¿Hace referencia a correos recientes sobre proyectos? ¿Su manejo de ambigüedad difiere de Word y Teams?
-12. Ejecuta la **Tarea T5** — escribe:
-    ```
-    Agenda una reunión para mañana a las 10am con María García del departamento de finanzas
-    ```
-13. Observa: ¿Puede interactuar con el calendario desde Outlook? ¿Ofrece crear una invitación de calendario?
-14. En tu bitácora Notion, completa la columna **"Copilot en Outlook"** de la tabla comparativa.
+1. En Poe, abre el bot Gemini económico que guardaste como favorito (por ejemplo, `Gemini-2.5-Flash-Lite`).
+2. Inicia una **conversación nueva**.
+3. Repite las **Tareas T1 a T4** exactamente con el mismo texto usado en los pasos anteriores.
 
-**Resultado esperado:** Has identificado que Copilot en Outlook está especializado en el contexto de correo electrónico, puede generar borradores listos para enviar, tiene acceso al historial de correos como fuente de contexto, y potencialmente puede interactuar con el calendario integrado.
+![Imagen 013](../images/imagen013.png)
 
-**Verificación:** Para la Tarea T1, Copilot en Outlook debería ofrecer una experiencia más fluida hacia el envío real del correo comparado con Word (que solo genera texto en un documento). Anota esta diferencia.
+4. Para cada tarea, observa y registra:
+   - Calidad y formato de la respuesta (por ejemplo, uso de listas, tablas o encabezados).
+   - Cómo comunica sus limitaciones en la Tarea T2 .
+   - Diferencias notables en el razonamiento de la Tarea T3.
+5. En la pestaña **Tabla Comparativa** de tu bitácora, completa la columna **"Gemini"**.
+
+**Resultado esperado:** Has identificado que los tres modelos conversacionales (GPT, Claude, Gemini) comparten un patrón: buena generación de contenido y razonamiento, pero ninguno puede acceder a información en tiempo real ni ejecutar acciones por sí mismo.
+
+**Verificación:** Anota en la pestaña Notas si notaste alguna diferencia relevante en la Tarea T3 (razonamiento) entre los tres modelos.
 
 ---
 
-### Paso 5: Explorar ChatGPT GPT-4o
+### Paso 5: Explorar un bot con búsqueda web habilitada
 
-**Objetivo:** Ejecutar las mismas cinco tareas en ChatGPT GPT-4o como referencia externa y comparar su comportamiento con los agentes integrados de Microsoft 365.
+**Objetivo:** Ejecutar las mismas cinco tareas en un bot de Poe con acceso a búsqueda web (herramienta externa) y comparar su comportamiento frente a los modelos puramente conversacionales.
 
 **Instrucciones:**
 
-1. Abre tu navegador y accede a [https://chat.openai.com](https://chat.openai.com).
-2. Inicia sesión con la cuenta ChatGPT Plus provista.
-3. Verifica que el modelo seleccionado sea **GPT-4o** (visible en la parte superior de la interfaz).
-4. Inicia una **nueva conversación** (clic en "New chat").
-5. Ejecuta la **Tarea T1** — escribe:
-   ```
-   Redacta un correo profesional para solicitar una reunión con el equipo de ventas para discutir los resultados del Q1
-   ```
-6. Observa y registra:
-   - Calidad y extensión de la respuesta
-   - ¿Ofrece variantes de tono?
-   - ¿Puede enviarlo? (No — no tiene integración con tu correo)
-7. Ejecuta la **Tarea T2** — escribe:
-   ```
-   ¿Cuáles fueron los temas principales de mi última reunión de equipo?
-   ```
-8. Observa: ChatGPT **no tiene acceso** a tus datos organizacionales. Registra cómo maneja esta limitación. ¿Pide contexto? ¿Inventa información?
-9. Ejecuta la **Tarea T3** — escribe:
-   ```
-   Dado que nuestro presupuesto se redujo un 15% y tenemos 3 proyectos pendientes, ¿cuál debería priorizar?
-   ```
-10. Observa: ¿Cómo razona sin contexto específico? ¿Ofrece un marco de decisión genérico? ¿Pide más detalles?
-11. Ejecuta la **Tarea T4** — escribe:
-    ```
-    Necesito ayuda con lo del proyecto
-    ```
-12. Observa: ¿Cómo maneja la ambigüedad comparado con los Copilots de M365? ¿Hace preguntas de clarificación?
-13. Ejecuta la **Tarea T5** — escribe:
-    ```
-    Agenda una reunión para mañana a las 10am con María García del departamento de finanzas
-    ```
-14. Observa: ChatGPT no puede ejecutar esta acción. ¿Cómo comunica esta limitación? ¿Ofrece alternativas?
-15. En tu bitácora Notion, completa la columna **"ChatGPT GPT-4o"** de la tabla comparativa.
+1. En Poe, abre el bot con búsqueda web económico que guardaste como favorito (por ejemplo, `Assistant`).
+2. Inicia una **conversación nueva**.
+3. Ejecuta la **Tarea T1** y observa si el comportamiento es similar al de los modelos anteriores.
+4. Ejecuta la **Tarea T2** — observa: ¿Ahora sí puede mencionar noticias recientes reales? Este es un punto clave de diferenciación.
+5. Ejecuta la **Tarea T3** y observa si busca información adicional en la web para enriquecer su razonamiento.
+6. Ejecuta la **Tarea T4** y observa cómo maneja la ambigüedad.
+7. En la pestaña **Tabla Comparativa** de tu bitácora, completa la columna **"Bot con búsqueda web"**.
 
-**Resultado esperado:** Has identificado que ChatGPT GPT-4o tiene excelente capacidad de generación de contenido y razonamiento, pero carece de acceso a datos organizacionales y no puede ejecutar acciones en sistemas externos. Su manejo de ambigüedad tiende a ser más sofisticado (preguntas de clarificación elaboradas) pero opera sin contexto empresarial.
+**Resultado esperado:** Has identificado que un bot con acceso a una herramienta externa (búsqueda web) puede superar la limitación de "conocimiento congelado" de los modelos puramente conversacionales, acercándose más a un comportamiento de agente al consultar información fuera de sí mismo antes de responder.
 
-**Verificación:** La diferencia más notable debería ser en T2 (recuperación de información) donde ChatGPT no puede acceder a datos reales mientras que Copilot en Teams sí puede. Confirma que esta observación está documentada.
+**Verificación:** La diferencia más notable debería estar en T2. Confirma que documentaste con qué fuente o forma respondió el bot (si citó un sitio web, por ejemplo).
 
 ---
 
 ### Paso 6: Completar la tabla comparativa y clasificación
 
-**Objetivo:** Sintetizar las observaciones en una tabla comparativa estructurada y clasificar cada agente según la taxonomía de la Lección 1.1.
+**Objetivo:** Sintetizar las observaciones en la pestaña Tabla Comparativa y clasificar cada modelo/bot según la taxonomía de la Lección 1.1.
 
 **Instrucciones:**
 
-1. Regresa a tu página **Bitácora-Lab-01** en Notion.
-2. Navega a la sección **Tabla Comparativa de Agentes**.
-3. Completa la tabla con el siguiente formato para cada agente:
+1. Regresa a la pestaña **Tabla Comparativa** de tu bitácora.
+2. Confirma que completaste la tabla de 5 atributos × 4 modelos:
 
-| Atributo | Copilot Word | Copilot Teams | Copilot Outlook | ChatGPT GPT-4o |
-|----------|--------------|---------------|-----------------|-----------------|
+| Atributo | GPT | Claude | Gemini | Bot con búsqueda web |
+|----------|-----|--------|--------|------------------------|
 | **Contexto** | [Alcance del contexto disponible] | | | |
-| **Memoria** | [¿Recuerda entre interacciones?] | | | |
+| **Memoria** | [¿Recuerda entre interacciones dentro del chat?] | | | |
 | **Herramientas** | [¿Qué herramientas puede usar?] | | | |
 | **Razonamiento** | [Calidad del razonamiento observado] | | | |
 | **Autonomía** | [Nivel: Nula/Baja/Media/Alta] | | | |
 
-4. Debajo de la tabla, agrega una sección titulada **"Clasificación según Taxonomía"** y clasifica cada agente:
+3. En la misma pestaña, debajo de la tabla, encontrarás la sección **"Clasificación según Taxonomía"**. Clasifica cada modelo/bot:
    - **Reactivo:** Opera solo cuando se le solicita, sin memoria ni planificación.
    - **Asistente:** Comprende lenguaje natural, mantiene contexto conversacional, genera contenido pero no ejecuta acciones autónomas.
    - **Autónomo:** Planifica, usa herramientas y ejecuta acciones con mínima supervisión.
 
-5. Para cada agente, escribe una justificación de 2-3 oraciones explicando por qué lo clasificaste de esa manera. Ejemplo:
+4. Para cada modelo, escribe en la celda correspondiente una justificación de 2-3 oraciones explicando por qué lo clasificaste de esa manera. Ejemplo:
 
-   > **Copilot en Word — Clasificación: Asistente**
-   > Comprende lenguaje natural y genera contenido de alta calidad. Su contexto está limitado al documento actual. No ejecuta acciones fuera de Word ni accede a herramientas externas, por lo que su autonomía es baja.
+   > **GPT — Clasificación: Asistente**
+   > Comprende lenguaje natural y genera contenido de alta calidad. Su contexto está limitado a la conversación activa y a su fecha de entrenamiento. No ejecuta acciones externas ni accede a herramientas, por lo que su autonomía es baja.
 
-6. En la sección **"Notas de Observación"**, redacta un párrafo de 3-5 oraciones identificando al menos un escenario empresarial real de tu contexto profesional donde cada tipo de agente sería la opción más adecuada.
+5. En la pestaña **Notas**, redacta un párrafo de 3-5 oraciones por cada tipo (Reactivo / Asistente / Autónomo) identificando al menos un escenario empresarial real de tu contexto profesional donde ese tipo de modelo/bot sería la opción más adecuada.
 
-7. Registra la **hora de finalización** en el encabezado de la bitácora.
+6. Regresa a la pestaña **Encabezado** y registra la **hora de finalización**.
 
-**Resultado esperado:** Tu bitácora contiene:
-- Tabla comparativa completa con los 5 atributos × 4 agentes (20 celdas completadas).
-- Clasificación taxonómica justificada para cada agente.
-- Notas de aplicación empresarial.
+**Resultado esperado:** Tu archivo `Bitacora-Lab-01-Poe.xlsx` contiene:
+- Pestaña Tabla Comparativa completa con los 5 atributos × 4 modelos (20 celdas completadas) y la clasificación taxonómica justificada para cada modelo.
+- Pestaña Notas con los escenarios de aplicación empresarial.
 
-**Verificación:** Revisa que ninguna celda de la tabla esté vacía. Cada clasificación debe tener una justificación basada en evidencia observada (no en suposiciones teóricas).
+**Verificación:** Revisa que ninguna celda amarilla del archivo esté vacía. Cada clasificación debe tener una justificación basada en evidencia observada (no en suposiciones teóricas).
 
 ---
 
@@ -347,56 +291,80 @@ Para considerar este laboratorio completado exitosamente, verifica los siguiente
 
 | # | Criterio de validación | Cumple (✓/✗) |
 |---|------------------------|:---:|
-| 1 | Se ejecutaron las 5 tareas de prueba en Copilot Word y se registraron observaciones | |
-| 2 | Se ejecutaron las 5 tareas de prueba en Copilot Teams y se registraron observaciones | |
-| 3 | Se ejecutaron las 5 tareas de prueba en Copilot Outlook y se registraron observaciones | |
-| 4 | Se ejecutaron las 5 tareas de prueba en ChatGPT GPT-4o y se registraron observaciones | |
-| 5 | La tabla comparativa tiene las 20 celdas (5 atributos × 4 agentes) completadas | |
-| 6 | Cada agente tiene una clasificación taxonómica con justificación de 2-3 oraciones | |
-| 7 | Se identificó al menos un escenario empresarial real para cada tipo de agente | |
-| 8 | Se tomó al menos una captura de pantalla como evidencia de interacción | |
+| 1 | Se ejecutaron las 4 tareas de prueba en el modelo GPT y se registraron observaciones | |
+| 2 | Se ejecutaron las 4 tareas de prueba en el modelo Claude y se registraron observaciones | |
+| 3 | Se ejecutaron las 4 tareas de prueba en el modelo Gemini y se registraron observaciones | |
+| 4 | Se ejecutaron las 4 tareas de prueba en el bot con búsqueda web y se registraron observaciones | |
+| 5 | La pestaña Tabla Comparativa tiene las 20 celdas (5 atributos × 4 modelos) completadas | |
+| 6 | Cada modelo tiene una clasificación taxonómica con justificación de 2-3 oraciones | |
+| 7 | La pestaña Notas identifica al menos un escenario empresarial real para cada tipo de modelo/bot | |
 
 **Resultado esperado de clasificación típica:**
 
-| Agente | Clasificación esperada |
+| Modelo/Bot | Clasificación esperada |
 |--------|----------------------|
-| Copilot en Word | Asistente (especializado en redacción) |
-| Copilot en Teams | Asistente con rasgos de agente (acceso a herramientas organizacionales) |
-| Copilot en Outlook | Asistente con rasgos de agente (integración con calendario/correo) |
-| ChatGPT GPT-4o | Asistente (potente en razonamiento pero sin acceso a herramientas externas en modo básico) |
+| GPT | Asistente (potente en generación y razonamiento, sin acceso a herramientas externas) |
+| Claude | Asistente (potente en generación y razonamiento, sin acceso a herramientas externas) |
+| Gemini | Asistente (potente en generación y razonamiento, sin acceso a herramientas externas) |
+| Bot con búsqueda web | Asistente con rasgos de agente (usa una herramienta externa para obtener información actualizada) |
 
-> **Nota:** Las clasificaciones pueden variar según la versión exacta de Copilot y las funcionalidades habilitadas en tu tenant. Lo importante es que la justificación sea coherente con el comportamiento observado.
+> **Nota:** Las clasificaciones pueden variar según el modelo exacto disponible en Poe al momento de ejecutar el laboratorio. Lo importante es que la justificación sea coherente con el comportamiento observado.
 
 ---
 
 ## 8. Solución de Problemas
 
-### Problema 1: El ícono de Copilot no aparece en Word, Teams u Outlook
+### Problema 1: No encuentro alguno de los bots recomendados en Poe
 
-**Síntomas:** Al abrir la aplicación de Microsoft 365, no se visualiza el ícono de Copilot en la cinta de opciones (Word), la barra lateral (Teams) o la barra de herramientas (Outlook).
+**Síntomas:** Al buscar el nombre del bot GPT, Claude, Gemini o el bot con búsqueda web en el buscador de Poe, no aparece o el nombre exacto ha cambiado.
 
-**Causa:** La licencia de Microsoft 365 Copilot no se ha propagado correctamente a la cuenta del usuario, o la aplicación está usando una versión anterior al canal actual 2404 que no incluye la integración de Copilot.
+**Causa:** Poe actualiza periódicamente los nombres y versiones de los modelos disponibles en su catálogo.
 
 **Solución:**
-1. Verifica tu licencia accediendo a [https://portal.office.com/account](https://portal.office.com/account) → *Suscripciones*. Debe aparecer "Microsoft 365 Copilot" en la lista.
-2. Si la licencia aparece pero el ícono no se muestra, cierra completamente la aplicación y vuelve a abrirla.
-3. En aplicaciones de escritorio, ve a *Archivo > Cuenta* y verifica que la versión sea 2404 o superior. Si es anterior, haz clic en *Opciones de actualización > Actualizar ahora*.
-4. Si el problema persiste, usa la versión web (word.cloud.microsoft, outlook.office.com) donde Copilot se activa automáticamente con la licencia correcta.
-5. Contacta al instructor si después de estos pasos Copilot sigue sin aparecer — puede ser necesario que el administrador del tenant verifique la asignación de licencias.
+1. Usa el buscador de Poe y escribe el nombre genérico del proveedor (por ejemplo, "GPT", "Claude" o "Gemini") para ver todas las variantes disponibles.
+2. Elige la versión más reciente que aparezca marcada como estable o recomendada.
+3. Para el bot con búsqueda web, busca "web search" o revisa la descripción de los bots destacados: debe indicar explícitamente que tiene acceso a internet en tiempo real.
+4. Si tienes dudas sobre qué bot usar, consulta con el instructor antes de continuar.
 
 ---
 
-### Problema 2: ChatGPT no permite seleccionar el modelo GPT-4o
+### Problema 2: Alcancé el límite de mensajes gratuitos en Poe
 
-**Síntomas:** Al acceder a chat.openai.com, el selector de modelo solo muestra GPT-3.5 o no permite cambiar a GPT-4o. Las respuestas son notablemente menos elaboradas de lo esperado.
+**Síntomas:** Al enviar un mensaje, Poe indica que se alcanzó el límite diario o mensual de mensajes para la cuenta gratuita en ese modelo.
 
-**Causa:** La cuenta de ChatGPT no tiene suscripción Plus activa, o se agotó el límite de uso de GPT-4o en el período actual (OpenAI aplica límites de mensajes por hora para usuarios Plus).
+**Causa:** Las cuentas gratuitas de Poe tienen un límite de puntos/mensajes que se consumen según el modelo utilizado.
 
 **Solución:**
-1. Verifica tu plan accediendo a *Settings > Subscription* en la interfaz de ChatGPT. Debe indicar "Plus" o "Team".
-2. Si la cuenta es la compartida por el instructor, verifica que estás usando las credenciales correctas (no tu cuenta personal gratuita).
-3. Si ves el mensaje "You've reached the GPT-4o limit", espera 1 hora para que se restablezca el límite, o solicita al instructor credenciales alternativas.
-4. Como alternativa temporal para completar el laboratorio, puedes usar GPT-4o mini (si está disponible) documentando en tus notas que usaste un modelo diferente y cualquier diferencia de comportamiento observada.
+1. Espera al restablecimiento del límite (generalmente diario) o cambia temporalmente a otro modelo equivalente disponible.
+2. Reduce el número de tareas repetidas: si ya obtuviste una respuesta clara para una tarea, no la repitas innecesariamente.
+3. Si el problema persiste durante la sesión de laboratorio, consulta con el instructor sobre credenciales alternativas.
+
+---
+
+### Problema 3: Me quedé sin puntos a la mitad del laboratorio
+
+**Síntomas:** Poe muestra un mensaje indicando que ya no tienes puntos suficientes para enviar otro mensaje, antes de terminar las 20 interacciones (5 tareas × 4 modelos).
+
+**Causa:** Se eligió por error una variante más cara del modelo (revisa que el nombre del bot corresponda a Nano/Mini/Haiku/Flash y no a la versión insignia), se activó una búsqueda web en una tarea que no la necesitaba, o se repitieron tareas innecesariamente.
+
+**Solución:**
+1. Revisa en tu bitácora cuántas interacciones ya completaste y con qué modelos — no repitas tareas ya registradas.
+2. Verifica que el bot que estás usando sea realmente la variante económica: toca el ícono de puntos (⚡) y compara su tabla de Tarifas con la de los demás.
+3. Espera al restablecimiento diario de tus puntos gratuitos (ver Problema 2) para completar los modelos faltantes.
+4. Si el laboratorio es en sesión de grupo y el tiempo apremia, completa la Tabla Comparativa con los modelos que sí alcanzaste a probar y anota en la pestaña Notas cuáles quedaron pendientes; podrás completarlos después con tus puntos del día siguiente.
+
+---
+
+### Problema 4: Excel muestra las celdas de la plantilla bloqueadas o el formato se rompe
+
+**Síntomas:** Al intentar escribir en una celda de `Bitacora-Lab-01-Poe.xlsx`, no se puede editar, o al copiar/pegar texto se pierde el color de fondo amarillo de las celdas de captura.
+
+**Causa:** Algunas celdas de la plantilla tienen combinación de celdas (merge) que puede alterarse al pegar contenido con formato desde otra fuente.
+
+**Solución:**
+1. Escribe directamente sobre la celda amarilla en lugar de copiar y pegar texto con formato desde otro documento (usa "Pegar solo valores" si necesitas copiar texto).
+2. Si el formato se pierde, no te preocupes por restaurarlo: lo importante es que el contenido esté completo. El instructor puede reemplazar el formato al recopilar las bitácoras.
+3. Si el archivo se abre en modo de solo lectura, verifica que estás trabajando sobre tu copia personal y no sobre el archivo original compartido por el instructor.
 
 ---
 
@@ -404,10 +372,8 @@ Para considerar este laboratorio completado exitosamente, verifica los siguiente
 
 Este laboratorio no genera recursos que requieran eliminación significativa. Realiza las siguientes acciones de orden:
 
-1. **Documento de Word:** El documento en blanco creado en el Paso 2 puede eliminarse o renombrarse como `Lab-01-Exploración-Copilot-Word` si deseas conservarlo como referencia.
-2. **Conversación de ChatGPT:** Puedes renombrar la conversación como "Lab 01 - Exploración de Agentes" para fácil referencia futura, o eliminarla si no la necesitas.
-3. **Capturas de pantalla:** Guarda cualquier captura tomada durante el laboratorio en una carpeta local organizada (por ejemplo, `~/LabAgentes/capturas/lab-01/` o `C:/LabAgentes/capturas/lab-01/`).
-4. **Notion:** No elimines la Bitácora-Lab-01 — será referencia para los laboratorios del Módulo 2.
+1. **Conversaciones en Poe:** Puedes renombrar cada conversación con el nombre del modelo utilizado (por ejemplo, "Lab 01 - GPT") para fácil referencia futura, o eliminarlas si no las necesitas.
+2. **Bitácora:** No elimines tu archivo `Bitacora-Lab-01-Poe.xlsx` — será referencia para los laboratorios del Módulo 2.
 
 ---
 
@@ -415,22 +381,18 @@ Este laboratorio no genera recursos que requieran eliminación significativa. Re
 
 ### Lo que aprendiste
 
-En este laboratorio aplicaste los conceptos teóricos de la Lección 1.1 interactuando directamente con cuatro agentes de IA preconstruidos. Comprobaste de primera mano que:
+En este laboratorio aplicaste los conceptos teóricos de la Lección 1.1 interactuando directamente con cuatro modelos/bots de IA en Poe. Comprobaste de primera mano que:
 
-- **El contexto disponible** varía drásticamente según la plataforma: Copilot en Teams accede a conversaciones y reuniones, Copilot en Word solo al documento actual, y ChatGPT no tiene acceso a datos organizacionales.
-- **La capacidad de acción** (uso de herramientas) es lo que más diferencia a un asistente de un agente: generar texto no es lo mismo que ejecutar una tarea.
+- **El contexto disponible** de un modelo conversacional está limitado a la conversación activa y a su fecha de entrenamiento, salvo que se le proporcione una herramienta externa.
+- **La capacidad de acción** (uso de herramientas) es lo que más diferencia a un asistente de un agente: generar texto no es lo mismo que consultar información real y actualizada.
 - **El manejo de ambigüedad** revela la sofisticación del sistema: los mejores piden clarificación contextualizada en lugar de asumir o fallar.
-- **La autonomía** en los agentes preconstruidos actuales es todavía limitada, pero los Copilots de M365 muestran rasgos de agente al integrar múltiples fuentes de información y ofrecer acciones.
+- **La autonomía** en los modelos conversacionales básicos es todavía limitada; un bot con herramientas (como búsqueda web) empieza a mostrar rasgos de agente al incorporar información externa a su respuesta.
 
 ### Conexión con los próximos laboratorios
 
-Los hallazgos documentados en tu tabla comparativa servirán como referencia cuando, en los laboratorios del Módulo 2 (02-00-01 a 02-00-04), diseñes y construyas tu propio agente en Microsoft Copilot Studio. Podrás definir conscientemente qué nivel de contexto, memoria, herramientas y autonomía quieres otorgarle a tu agente, basándote en lo que observaste que funciona (y lo que no) en los agentes preconstruidos.
+Los hallazgos documentados en tu tabla comparativa servirán como referencia cuando, en los próximos laboratorios de Poe, construyas tus propios prompts/bots aplicando conceptos de rol, objetivos, restricciones, contexto persistente, consistencia de respuesta y manejo de ambigüedad. Podrás definir conscientemente qué nivel de contexto, memoria, herramientas y autonomía quieres otorgarle a tu propio bot, basándote en lo que observaste que funciona (y lo que no) en los modelos preconstruidos.
 
 ### Recursos adicionales
 
-- [Microsoft — Documentación oficial de Copilot en Microsoft 365](https://learn.microsoft.com/es-es/copilot/microsoft-365/)
-- [OpenAI — Guía de uso de ChatGPT](https://help.openai.com/en/collections/3742473-chatgpt)
+- [Poe — Sitio oficial](https://poe.com)
 - [Russell & Norvig — Capítulo de Agentes Inteligentes (referencia académica)](https://aima.cs.berkeley.edu/)
-- [Microsoft — Comparativa de capacidades de Copilot por aplicación](https://adoption.microsoft.com/es-es/copilot/)
-
----
