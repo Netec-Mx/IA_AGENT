@@ -1,4 +1,4 @@
-<img src="images/neteclogo (2).png" alt="logo" width="300"/>
+<img src="Images/neteclogo (2).png" alt="logo" width="300"/>
 
 
 # IA para el Manejo de Agentes
