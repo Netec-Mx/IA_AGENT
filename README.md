@@ -1,5 +1,6 @@
 <img src="images/neteclogo (2).png" alt="logo" width="300"/>
 
+
 # IA para el Manejo de Agentes
 
 Repositorio de laboratorios del curso **260813 - IA para el Manejo de Agentes**. A lo largo de cinco capítulos se exploran los fundamentos de los agentes de inteligencia artificial, la ingeniería de prompts, la creación de agentes con conocimiento empresarial, la automatización de acciones y la evaluación de su desempeño.
