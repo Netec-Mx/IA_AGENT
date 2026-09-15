@@ -1,3 +1,5 @@
+<img src="images/neteclogo (2).png" alt="logo" width="300"/>
+
 # IA para el Manejo de Agentes
 
 Repositorio de laboratorios del curso **260813 - IA para el Manejo de Agentes**. A lo largo de cinco capítulos se exploran los fundamentos de los agentes de inteligencia artificial, la ingeniería de prompts, la creación de agentes con conocimiento empresarial, la automatización de acciones y la evaluación de su desempeño.
@@ -100,3 +102,13 @@ Las carpetas de los capítulos incluyen su propia guía `README.md`. Algunos lab
 ---
 
 Material de uso académico desarrollado para **Netec**.
+
+  ---
+
+## 📬 **Contacto y más información**
+
+Si tienes alguna pregunta o necesitas más detalles, no dudes en [contactarnos](mailto:soporte@netec.com). También puedes encontrar más recursos en nuestra [página](https://netec.com).
+
+---
+
+¡Gracias por visitar nuestra plataforma! No olvides revisar todos los laboratorios y comenzar tu viaje de aprendizaje hoy mismo.
